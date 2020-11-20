@@ -1,0 +1,2 @@
+DEFAULT_ARCHITECTURE atom Alpha
+DEFAULT_FILE atom Alpha.v

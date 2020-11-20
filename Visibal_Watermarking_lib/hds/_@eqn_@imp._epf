@@ -1,0 +1,2 @@
+DEFAULT_ARCHITECTURE atom Eqn_Imp
+DEFAULT_FILE atom Eqn_Imp.v

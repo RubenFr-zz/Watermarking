@@ -1,0 +1,15 @@
+[DesignChecker]
+Visibal_Watermarking_lib = $HDS_PROJECT_DIR\Visibal_Watermarking_lib\designcheck
+[hdl]
+Visibal_Watermarking_lib = $HDS_PROJECT_DIR/Visibal_Watermarking_lib/hdl
+[hds]
+Visibal_Watermarking_lib = $HDS_PROJECT_DIR/Visibal_Watermarking_lib/hds
+[hds_settings]
+default_library = Visibal_Watermarking_lib
+version = 2
+[library_files_inclusion]
+Visibal_Watermarking_lib = specify
+[library_type]
+Visibal_Watermarking_lib = regular
+[shared]
+others = $HDS_TEAM_HOME/shared.hdp

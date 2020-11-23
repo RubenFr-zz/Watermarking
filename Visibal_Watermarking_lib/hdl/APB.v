@@ -10,11 +10,11 @@
 module APB(
 	clk, 
 	rst, 
-	CTRL,
-	ADDR, 
-	WD, 
-	RD,
-	START
+	write_en,
+	addr, 
+	data_in, 
+	data_out,
+	start
 );
 
 	//PARAMETERS  
@@ -22,13 +22,13 @@ module APB(
 	parameter Amba_Addr_Depth = 20;         // Size of the data bank 
 
 	// DEFINE INPUTS/OUTPUTS VARS
-	input wire 	clk;							
-	input wire 	rst;						// Active Low
-	input wire 	CTRL;                       // 0 - ReadData, 1 - WriteData
-	input wire 	[Amba_Addr_Depth-1:0] ADDR;
-	input wire 	[Amba_Word-1:0] WD;			// Write Data 
-	output wire [Amba_Word-1:0] RD;			// Read Data
-	output wire START;						// 0 - Off, 1 - Start (represent the CTRL register 0x00)
+	input wire 							clk;							
+	input wire 							rst;		// Active Low
+	input wire 							write_en;   // 0 - ReadData, 1 - WriteData
+	input wire 	[Amba_Addr_Depth-1:0] 	addr;
+	input wire 	[Amba_Word-1:0] 		data_in;	// Write Data 
+	output reg 	[Amba_Word-1:0] 		data_out;	// Read Data
+	output wire 						start;		// 0 - Off, 1 - Start (represent the CTRL register 0x00)
 
 	// REGISTER BANK
 
@@ -40,43 +40,32 @@ module APB(
 	// 0x05 EdgeThreshold       Predefined Edge detection threshold
 	// 0x06 A_min               Scaling factor minimum percentage value
 	// 0x07 A_max               Scaling factor maximum percentage value
-	// 0x08 Bmin                Embedding factor minimum percentage value
-	// 0x09 Bmax                Embedding factor maximum percentage value
-	// 0x0A PrimaryPixel00      First Primry Image pixe (0,0)
+	// 0x08 B_min               Embedding factor minimum percentage value
+	// 0x09 B_max               Embedding factor maximum percentage value
+	// 0x0A PrimaryPixel00      First Primary Image pixel (0,0)
 	// ...
-	// 0x09+(Np^2)h PrimaryPixelNN        Last Primary Image pixel (N,N)
-	// 0x0A+(Np^2)h WatermarkPixel00      First Watermark Image pixe (0,0)
+	// 0x09+(Np^2)h PrimaryPixelNpNp        Last Primary Image pixel (Np,Np)
+	// 0x0A+(Np^2)h WatermarkPixel00      First Watermark Image pixel (0,0)
 	// ...
-	// 0x0A+(Np^2+Nw^2) PrimaryPixelNN    Last Primary Image pixel (N,N)
-
+	// 0x0A+(Np^2+Nw^2) WatermarkPixelNN    Last Primary Image pixel (Nw,Nw)
 
 	reg [Amba_Word-1:0] DataBank [(2**Amba_Addr_Depth)-1:0];  	// Contains all the registers
-	reg [Amba_Word-1:0] DATA_r;              	 				// Data yet to be assigned to ReadData
-	reg ready;                              					// Should we read from the ReadData ?
-	reg Start_r;
 	
 
-	always @(posedge clk or negedge rst) begin : Main
-		if(~rst)
-			begin
-				DataBank[0] <= {Amba_Word{1'b0}};                 // Set CTRL = 0
-				DataBank[1] <= {{(Amba_Word-8){1'b0}},{8'd255}};  // Set WhitePixel = 255
-				Start_r <= 1'b0;
-				ready <= 1'b0;
-			end
-		else
-			begin
-				case (CTRL)
-					1'b0 : DATA_r <= DataBank[ADDR];    // Read Data from DataBank
-					1'b1 : DataBank[ADDR] <= WD; 		// Write data to DataBank
-				endcase
-				Start_r <= DataBank[0][0];			// The system CTRL bit: 0 - wait, 1 - start 
-				ready <= (CTRL) ? 1'b0 : 1'b1;
-				
-			end
+	// always @(posedge clk or negedge rst) begin : Main
+	always @(negedge clk or negedge rst) begin : Main
+		if(!rst) begin
+			DataBank[0] <= 'd0;     // Set CTRL = 0
+			DataBank[1] <= 'd255;  	// Set WhitePixel = 255
+		end
+		else begin
+			if (write_en)
+				DataBank[addr] <= data_in;
+			else
+				data_out <= DataBank[addr];					
+		end
 	end 
 
-	assign RD = (ready) ? DATA_r : {Amba_Word{1'bz}};
-	assign START = Start_r;
+	assign start = DataBank[0][0];
 
 endmodule	// APB

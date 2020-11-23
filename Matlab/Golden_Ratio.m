@@ -1,6 +1,6 @@
 clc;
 clear;
-for k=1:1:3
+for k=1:1:1
     filename = sprintf('primary_image_%d.jpg',k);
     I = imread(filename);
     Nx = randi([200 720]);
@@ -91,6 +91,7 @@ for k=1:1:3
                 end
                 uk = round(sigmau / (M*M*256));
                 sk = round((2*sigmas) / (M*M*256));
+                disp(sk)
                 ak = round(Amin + ((Amax - Amin)*(2^(-(uk-0.5)^2)))/(sk));
                 bk = round(Bmin + (sk)*((Bmax - Bmin)*(1-2^(-(uk-0.5)^2))));
                 for rows=1:1:M

@@ -1,0 +1,1603 @@
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.tb_watermarking
+# vsim -gui work.tb_watermarking 
+# Start time: 16:57:41 on Nov 24,2020
+# Loading sv_std.std
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+add wave -position end  sim:/tb_watermarking/PrimaryImg[0]
+add wave -position end  sim:/tb_watermarking/PrimaryImg[1]
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+add wave -position end  sim:/tb_watermarking/PADDR
+add wave -position end  sim:/tb_watermarking/PWDATA
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/PADDR
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/PENABLE
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/PWDATA
+run
+run
+run
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Data_Bank/DataBank
+restart
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Data_Bank/DataBank
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+add wave -position 4  sim:/tb_watermarking/Visibal_Watermarking_1/Data_Bank/addr
+restart
+run
+run
+run
+run
+run
+run
+restart
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/APB_addr
+run
+run
+run
+run
+run
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/PSEL
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/PENABLE
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/PWRITE
+restart
+run
+run
+run
+run
+add wave -position end  sim:/tb_watermarking/PENABLE
+add wave -position end  sim:/tb_watermarking/PSEL
+add wave -position end  sim:/tb_watermarking/PWRITE
+run
+step -over
+run
+run
+add wave -position end  sim:/tb_watermarking/rst
+add wave -position end  sim:/tb_watermarking/clk
+add wave -position end  sim:/tb_watermarking/rst
+add wave -position end  sim:/tb_watermarking/PENABLE
+add wave -position end  sim:/tb_watermarking/PSEL
+add wave -position end  sim:/tb_watermarking/PWRITE
+add wave -position end  sim:/tb_watermarking/PWDATA
+add wave -position end  sim:/tb_watermarking/PADDR
+add wave -position end  sim:/tb_watermarking/PRDATA
+restart
+run
+run
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+restart
+add wave -position end  sim:/tb_watermarking/start
+run
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+run
+run
+run
+run
+run
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Data_Bank/DataBank
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Data_Bank/data_in
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Data_Bank/addr
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Data_Bank/data_out
+restart
+run
+run
+run
+run
+run
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Data_Bank/write_en
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v failed with 4 errors.
+# 4 compiles, 1 failed with 4 errors.
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+run
+run
+run
+run
+run
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/PADDR
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/PWDATA
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/APB_CTRL
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/APB_addr
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/APB_WriteData
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/APB_ReadData
+restart
+run
+run
+run
+run
+run
+add wave -position end  sim:/tb_watermarking/PENABLE
+add wave -position end  sim:/tb_watermarking/PSEL
+add wave -position end  sim:/tb_watermarking/PWRITE
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/block_done
+run
+run
+run
+run
+run
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/test
+restart
+run
+run
+run
+run
+run
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+add wave -position end  sim:/tb_watermarking/WatermarkImg
+restart
+run
+run
+run
+run
+run
+run
+# Compile of tb_watermarking_sv.sv failed with 1 errors.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 1 failed with 1 error.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+restart
+add wave -position end  sim:/tb_watermarking/count
+run
+run
+# Compile of tb_watermarking_sv.sv failed with 1 errors.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 1 failed with 1 error.
+# Compile of tb_watermarking_sv.sv failed with 2 errors.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 1 failed with 2 errors.
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+add wave -position end  sim:/tb_watermarking/count
+run
+add wave -position end  sim:/tb_watermarking/index
+restart
+run
+add wave -position end  sim:/tb_watermarking/i
+restart
+run
+restart
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+add wave -position end  sim:/tb_watermarking/test
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+add wave -position end  sim:/tb_watermarking/Np
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+add wave -position end  sim:/tb_watermarking/start
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run 3240
+restart
+run
+run 2
+# ** UI-Msg: (vsim-168) The time value, 2, is smaller than the simulator resolution so no run occurred.
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+add wave -position end  sim:/tb_watermarking/M
+add wave -position end  sim:/tb_watermarking/Np
+add wave -position end  sim:/tb_watermarking/Nw
+run
+add wave -position 3  sim:/tb_watermarking/Visibal_Watermarking_1/APB_READ
+add wave -position 4  sim:/tb_watermarking/Visibal_Watermarking_1/curr_state
+add wave -position 0  sim:/tb_watermarking/Visibal_Watermarking_1/clk
+run
+restart
+run
+run
+run
+run
+run
+run
+run
+add wave -position 4  sim:/tb_watermarking/Visibal_Watermarking_1/APB_ReadData
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/row
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/col
+restart
+run
+add wave -position end  sim:/tb_watermarking/M
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+add wave -position end  sim:/tb_watermarking/test
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/test
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+run
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/M
+restart
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+restart
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+run
+add wave -position end  sim:/tb_watermarking/Nw
+add wave -position end  sim:/tb_watermarking/Np
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Nw
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Np
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/DATA
+restart
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+restart
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+restart
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Data_Bank/DataBank
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Data_Bank/DataBank
+restart
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+restart
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/test
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# start
+quit -sim
+# End time: 20:23:31 on Nov 24,2020, Elapsed time: 3:25:50
+# Errors: 0, Warnings: 1
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking_sv.sv was successful.
+# 4 compiles, 0 failed with no errors.
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking_sv.sv was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.tb_watermarking
+# vsim -gui work.tb_watermarking 
+# Start time: 20:25:35 on Nov 24,2020
+# Loading sv_std.std
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/clk
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/APB_addr
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/APB_ReadData
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/row
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/col
+run
+# start
+#      11
+#      12
+#      15
+#      16
+add wave -position 3  sim:/tb_watermarking/Visibal_Watermarking_1/curr_state
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+run
+# start
+#      11
+#      12
+#      15
+#      16
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking_sv.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# start
+# col =   1, row =   0, next_addre =      11
+# col =   2, row =   0, next_addre =      12
+# col =   1, row =   1, next_addre =      15
+# col =   2, row =   1, next_addre =      16
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking_sv.sv failed with 2 errors.
+# 4 compiles, 1 failed with 2 errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# start
+# col =   1, row =   0, next_addre =      11
+# col =   2, row =   0, next_addre =      12
+# col =   1, row =   1, next_addre =      15
+# col =   2, row =   1, next_addre =      16
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking_sv.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# start
+# col =   1, row =   0, next_addre =      11
+# col =   2
+# col =   2
+# col =   2, row =   0, next_addre =      12
+# col =   1, row =   1, next_addre =      15
+# col =   2
+# col =   2
+# col =   2, row =   1, next_addre =      16
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking_sv.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# start
+# col =   1, row =   0, next_addre =      11
+# col =   2
+# col =   2
+# col =   2, row =   0, next_addre =      12
+# col =   1, row =   1, next_addre =      15
+# col =   2
+# col =   2
+# col =   2, row =   1, next_addre =      16
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking_sv.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# start
+# col =   1, row =   0, next_address =      11
+# col =   2
+# col =   2
+# col =   2, row =   0, next_address =      12
+# col =   1, row =   1, next_address =      15
+# col =   2
+# col =   2
+# col =   2, row =   1, next_address =      16
+quit -sim
+# End time: 20:35:24 on Nov 24,2020, Elapsed time: 0:09:49
+# Errors: 0, Warnings: 1
+vsim -gui work.tb_watermarking
+# vsim -gui work.tb_watermarking 
+# Start time: 00:14:47 on Nov 25,2020
+# Loading sv_std.std
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking_sv.sv was successful.
+# 4 compiles, 0 failed with no errors.
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/APB_addr
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/APB_ReadData
+add wave -position 0  sim:/tb_watermarking/Visibal_Watermarking_1/clk
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/row
+add wave -position 3  sim:/tb_watermarking/Visibal_Watermarking_1/col
+add wave -position 3  sim:/tb_watermarking/Visibal_Watermarking_1/curr_addr
+run
+# start
+# col =   1, row =   0, next_address =      11
+# col =   2
+# col =   2
+# col =   2, row =   0, next_address =      12
+# col =   1, row =   1, next_address =      15
+# col =   2
+# col =   2
+# col =   2, row =   1, next_address =      16
+add wave -position 4  sim:/tb_watermarking/Visibal_Watermarking_1/curr_state
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# start
+# col =   0, row =   0, next_address =      10
+# col =   0, row =   1, next_address =      14
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking_sv.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# start
+# col =          1, row =   0, next_address =         11
+# col =   1, row =          1, next_address =         15
+# col =          1, row =   1, next_address =         15
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking_sv.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# start
+# col =          1, row =   0, next_address =         11
+# col =           0, row =          1, next_address =         14
+# col =          1, row =   1, next_address =         15
+# Compile of APB.v was successful.
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking_sv.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# start
+# col =          1, row =   0, next_address =         11
+# col =           0, row =          1, next_address =         14
+# col =          1, row =   1, next_address =         15
+# col =          1, row =   0, next_address =         11
+# col =           0, row =          1, next_address =         14
+# col =          1, row =   1, next_address =         15
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Data_Bank/DataBank
+run
+run
+run
+run
+restart
+run
+run
+run
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/block_done
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# col =          1, row =   0, next_address =         13
+run
+run
+# col =           0, row =          1, next_address =         16
+run
+run
+# col =          1, row =   1, next_address =         17
+run
+run
+run
+run
+# col =          1, row =   0, next_address =         13
+run
+run
+# col =           0, row =          1, next_address =         16
+run
+run
+# col =          1, row =   1, next_address =         17
+run
+run
+run
+run
+run
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking_sv.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# start
+# col =          1, row =   0, next_address =         11
+# col =           0, row =          1, next_address =         14
+# col =          1, row =   1, next_address =         15
+# col =          1, row =   0, next_address =         11
+# col =           0, row =          1, next_address =         14
+# col =          1, row =   1, next_address =         15
+# col =          1, row =   0, next_address =         13
+# col =           0, row =          1, next_address =         16
+# col =          1, row =   1, next_address =         17
+# col =          1, row =   0, next_address =         13
+# col =           0, row =          1, next_address =         16
+# col =          1, row =   1, next_address =         17
+run
+run
+run
+run
+run
+run
+run
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking_sv.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# start
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/Pixel_Data
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/new_pixel
+restart
+run
+# start
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/Primary_Block
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/Watermark_Block
+run
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/M
+run
+restart
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/curr_state
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/done
+add wave -position 11  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/White_Pixel
+run
+# start
+add wave -position 9  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/Np
+add wave -position 10  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/Nw
+restart
+run
+# start
+add wave -position 8  sim:/tb_watermarking/index
+restart
+run
+# start
+add wave -position 7  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/en
+restart
+run
+# start
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking_sv.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# start
+quit -sim
+# End time: 01:07:54 on Nov 25,2020, Elapsed time: 0:53:07
+# Errors: 0, Warnings: 1
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of Visibal_Watermarking_sv.sv was successful.
+# 4 compiles, 0 failed with no errors.
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Visibal_Watermarking_sv.sv was successful.
+# Compile of Block_Divider_sv.sv was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.tb_watermarking
+# vsim -gui work.tb_watermarking 
+# Start time: 01:09:29 on Nov 25,2020
+# Loading sv_std.std
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/clk
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/APB_addr
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/APB_ReadData
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/block_done
+add wave -position 3  sim:/tb_watermarking/Visibal_Watermarking_1/curr_state
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/curr_state
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/done
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/Pixel_in
+add wave -position 6  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/en
+add wave -position 8  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/index
+run
+# start
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/M
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/Np
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/Nw
+add wave -position 0  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/White_Pixel
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/Bthr
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/A_min
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/A_max
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/B_min
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/B_max
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+run
+# start
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/Primary_Block
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Visibal_Watermarking_sv.sv was successful.
+# Compile of Block_Divider_sv.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# start
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Visibal_Watermarking_sv.sv was successful.
+# Compile of Block_Divider_sv.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# start
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+add wave -position end  sim:/tb_watermarking/Visibal_Watermarking_1/Block_Divider/Watermark_Block
+restart
+run
+# start
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# Compile of tb_watermarking_sv.sv was successful.
+# Compile of APB.v was successful.
+# Compile of Visibal_Watermarking_sv.sv was successful.
+# Compile of Block_Divider_sv.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+# start
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+add wave -position 10  sim:/tb_watermarking/Pixel_Data
+restart
+run
+# start
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+# entered in enable
+quit -sim
+# End time: 01:43:32 on Nov 25,2020, Elapsed time: 0:34:03
+# Errors: 0, Warnings: 1

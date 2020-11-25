@@ -65,7 +65,6 @@ reg						first_read;			// First read from APB -> no DATA available
 reg [Amba_Word-1:0]		DATA;				// Data read from APB
 
 // PROCESSING
-reg 						done;				// Processed all the pixels
 reg [Amba_Addr_Depth:0]		curr_addr;			// Current data address we want to reach
 reg [Block_Depth-1:0] 		row;
 reg [Block_Depth-1:0] 		col;
@@ -92,7 +91,7 @@ APB #(.Amba_Word(Amba_Word),.Amba_Addr_Depth(Amba_Addr_Depth)) Data_Bank(
 Block_Divider #(.Data_Depth(Data_Depth), .Max_Block_Size(Max_Block_Size)) Block_Divider(
 	.clk(clk),
 	.rst(rst),
-	.en(start),				
+	.en(start && !Image_Done),				
 	.Pixel_in(APB_ReadData[Data_Depth-1:0]),
 	.Pixel_Data(Pixel_Data),
 	.new_pixel(new_pixel),
@@ -114,7 +113,7 @@ always @(posedge clk or negedge rst) begin : Main
 		CPU_wait_data <= 1'b0;
 		CPU_data_rdy <= 1'b0;
 		DATA <= {Amba_Word{1'bz}};
-		done <= 1'b0;
+		Image_Done <= 1'b0;
 		curr_addr <= {{Amba_Addr_Depth{1'b0}}, 1'b1};		// Reset addr to 0x01 (White pixel)
 		offset <= {{Amba_Addr_Depth-8{1'b0}}, 8'h0A};		// Addr first pixel
 		row <= 'd0;
@@ -157,7 +156,7 @@ always @(posedge clk or negedge rst) begin : Main
 		
 	// CPU not in action
 	// PROCESSING THE DATA
-	else if (start && !done) begin
+	else if (start && !Image_Done) begin
 	
 		////////////////////////// Start the process ////////////////////////////////
 		if (curr_state == State0) begin	
@@ -251,6 +250,8 @@ always @(posedge clk or negedge rst) begin : Main
 					curr_state <= State0;
 				end
 				else begin
+					row <= 'd0;
+					col <= 'd0;
 					curr_state = State2;
 				end
 			end

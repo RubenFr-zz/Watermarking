@@ -12,7 +12,7 @@ localparam Max_Block_Size = 5184;	// Max pixels that a block can countain (720 /
 integer fd, index;
 integer i = 0;
 integer tmp1, tmp2;
-integer count=0, row=0, col=0;
+integer count=0, row=0, col=0, offset=0;
 
 integer test;
 
@@ -26,10 +26,10 @@ reg [Data_Depth-1:0] Bmin = 25;
 reg [Data_Depth-1:0] Bmax = 31;
 reg [Data_Depth-1:0] Iwhite = 255;
 
-reg	[Data_Depth-1:0] PrimaryImg [400-1:0];
-reg	[Data_Depth-1:0] WatermarkImg [400-1:0];
-reg [Data_Depth-1:0] CorrectResults [400-1:0];
-reg [Data_Depth-1:0] Output [400-1:0];
+reg	[Data_Depth-1:0] PrimaryImg [16-1:0];
+reg	[Data_Depth-1:0] WatermarkImg [16-1:0];
+reg [Data_Depth-1:0] CorrectResults [16-1:0];
+reg [Data_Depth-1:0] Output [16-1:0];
 reg [Data_Depth-1:0] data;
 reg [Data_Depth-1:0] str;
 
@@ -96,6 +96,13 @@ end
 always @(posedge clk) begin: load_pixel
 	
 	if (start == 1) begin
+		if (Image_Done) begin
+		for (i = 0; i < Np*Np; i = i+1) begin
+			$fwrite(fd,"%d\n", Output[i]);
+		end
+		$display("FINISHED");
+		$finish;
+	end
 		PWRITE <= 'b0;
 		PSEL <= 'b0;		// release the CPU
 		PENABLE <= 'b0;
@@ -134,15 +141,27 @@ always @(posedge clk) begin: load_pixel
 	end
 end
 
-always @(new_pixel) begin
-	if(PixelData == {Data_Depth{1'bx}})
-		$display("ERROR");
-	
-	// $display("PixelData = %d, CorrectResults = %d", PixelData, );
-	// $fwrite(fd,"%d\n", PixelData);
-    // if (Image_Done)
-		// $display("FINISHED");
-	
+always @(negedge new_pixel) begin
+	if (!Image_Done) begin
+		Output[offset + col + row * Np] <= PixelData;
+		
+		if (col + 1 == M) begin		// Next col isn't in the block
+			col <= 0;
+			if (row + 1 == M) begin		// Next row isn't in the block
+				row <= 0;
+				count <= count + 1;
+				offset <= offset + (((count + 1) % M == 0) ? M*(M+1) : M);	// First pixel of next primary block
+			end
+			else begin
+				row <= row + 1;
+			end
+		end
+		else 
+			col <= col + 1;
+			
+		$display("Output[%d] = %d", offset + col + row * Np, PixelData );
+	end
+
 end
 
 always #2 clk = ~clk;

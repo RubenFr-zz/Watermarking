@@ -88,7 +88,6 @@ always @(posedge clk or negedge rst) begin: parameter_calculator
 			if (done)
 				curr_state <= State2;
 			else begin
-				new_pixel <= 0;
 				curr_state <= State1;
 			end
 		end
@@ -210,7 +209,7 @@ always @(posedge clk or negedge rst) begin: parameter_calculator
 			Pixel_Data <= (((ak * Primary_Block[index] + bk * Watermark_Block[index]) / 100) < 255)
 							? ((ak * Primary_Block[index] + bk * Watermark_Block[index]) / 100)
 							: 255;
-			new_pixel <= ~new_pixel;	// Switch to trigger the test bench that new data arrived
+			new_pixel <= 1'b1;	// Switch to trigger the test bench that new data arrived
 			
 			if (index + 1 < M * M) begin	
 				index <= index + 1;
@@ -222,5 +221,10 @@ always @(posedge clk or negedge rst) begin: parameter_calculator
 		end	
 	end
 end	
+
+always @(negedge clk)begin: trigger
+	if(new_pixel)
+		new_pixel <= ~new_pixel;
+end
 
 endmodule // Block_Divider

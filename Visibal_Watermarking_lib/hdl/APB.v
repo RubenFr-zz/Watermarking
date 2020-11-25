@@ -20,7 +20,7 @@ module APB(
 //PARAMETERS  
 parameter Amba_Word = 16;               // Size of every data reg
 parameter Amba_Addr_Depth = 20;         // Size of the data bank 
-localparam Max_Size_DATA = 2*12*12+10;
+localparam Max_Size_DATA = 2*720*720+10;
 
 // DEFINE INPUTS/OUTPUTS VARS
 input wire 							clk;							
@@ -50,15 +50,17 @@ output wire 						start;		// 0 - Off, 1 - Start (represent the CTRL register 0x0
 // ...
 // 0x0A+(Np^2+Nw^2) WatermarkPixelNN    Last Primary Image pixel (Nw,Nw)
 
-// reg [Amba_Word-1:0] DataBank [(2**Amba_Addr_Depth)-1:0];  	// Contains all the registers
-reg [Amba_Word-1:0] DataBank [Max_Size_DATA-1:0];  	// Contains all the registers
+reg [Amba_Word-1:0] DataBank [(2**Amba_Addr_Depth)-1:0];  	// Contains all the registers
+// reg [Amba_Word-1:0] DataBank [Max_Size_DATA-1:0];  	// Contains all the registers
 
-always @(negedge clk or negedge rst) begin : Main
-	if(rst) begin
+always @(negedge clk or posedge rst) begin : Main
+	if(rst) 
+	begin
 		DataBank[0] <= 'd0;     // Set CTRL = 0
 		DataBank[1] <= 'd255;  	// Set WhitePixel = 255
 	end
-	else begin
+	else 
+	begin
 		if (write_en)
 			DataBank[addr] <= data_in;
 		else

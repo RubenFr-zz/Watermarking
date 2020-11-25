@@ -68,15 +68,28 @@ reg [27-1:0]			sigma_S;		// max 720*720*255 = 132192000 (27 bits) - Sum for Sigm
 reg [27-1:0]			sigma_M;		// max 720*720*255 = 132192000 (27 bits) - Sum for Mu
 
 
-always @(posedge clk or negedge rst) begin: parameter_calculator
+always @(posedge clk or posedge rst) begin: parameter_calculator
 	
-	if (rst) begin
+	if (rst) 
+	begin
+		sigma_G <= 0;
+		sigma_S <= 0;
+		sigma_M <= 0;
+		index 	<= 0;
+		Guk		<= 0;
+		sk		<= 0;
+		uk		<= 0;
+		ak		<= 0;
+		bk		<= 0;
+		done	<= 0;
 		curr_state = State0;
 	end
 	
-	else if (en) begin
+	else if (en) 
+	begin
 	
-		if (curr_state == State0) begin 	//reset
+		if (curr_state == State0)  	//reset
+		begin
 			sigma_G <= 0;
 			sigma_S <= 0;
 			sigma_M <= 0;
@@ -89,12 +102,12 @@ always @(posedge clk or negedge rst) begin: parameter_calculator
 			done	<= 0;
 			if (done)
 				curr_state <= State2;
-			else begin
+			else
 				curr_state <= State1;
-			end
 		end
 		
-		else if (curr_state == State1) begin 	// init
+		else if (curr_state == State1) 	// init parameters
+		begin 
 			
 			case(index)
 				0: 	White_Pixel <= Pixel_in;
@@ -110,31 +123,31 @@ always @(posedge clk or negedge rst) begin: parameter_calculator
 			
 			if (index + 1 < 9) 
 				index <= index + 1;
-			else begin
+			else 
+			begin
 				index <= 0;
 				curr_state <= State2;
 			end
 		end
 
-		else if (curr_state == State2) begin 	// Primary_Block loading
+		else if (curr_state == State2) 		// Primary_Block loading
+		begin 
 			Primary_Block[index] <= Pixel_in;
-			if (index < (M * M) - 1) begin		
+			if (index < (M * M) - 1) 
 				index <= index + 1;
-			end
 			else begin					// Next pixel is the first of Watermark_Block
 				index <= 0;
 				curr_state <= State3;
 			end
 			
-			// $display("sigma_M = %d, sigma_S = %d, sigma_G = %d", sigma_M, sigma_S, sigma_G);
 			
 			/////////////////////////////////////////////////////////////////////////
 			/* Sigma_M - Eqn3 */
 			sigma_M <= sigma_M + Pixel_in;
 			/* Sigma_S - Eqn4 */
 			sigma_S <= sigma_S + ((Pixel_in > ((White_Pixel+1)/2)) 
-									? (Pixel_in - ((White_Pixel+1)/2)) 
-									: (((White_Pixel+1)/2) - Pixel_in));
+								? (Pixel_in - ((White_Pixel+1)/2)) 
+								: (((White_Pixel+1)/2) - Pixel_in));
 			/* Sigma_G - Eqn5 */
 			if (index == 0) 
 				continue;

@@ -2,8 +2,9 @@
 
 ## Usage
 
-Pick an image you want to watermake and run !
+Pick an image you want to watermark and run !
 
 ## Version
 
-Working version (tested 4x4, 6x6 and 12x12 images)
+Working version 
+See result: .Matlab/watermarked_image(result)_1.txt vs ./Matlab/output.txt

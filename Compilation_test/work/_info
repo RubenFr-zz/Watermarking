@@ -10,78 +10,78 @@ z2
 cModel Technology
 dC:/intelFPGA_lite/20.1
 vAPB
-Z0 !s110 1606325463
+Z0 !s110 1606346906
 !i10b 1
-!s100 QTMhRok>nPKi44j[jfOV=1
+!s100 Y4f>_?k=M^;F8GlabCP=12
 Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
-I>?edFGmZ7Ao0Q8_WNm7@F0
+I6907`b_A<@NI1<VOmmV8a1
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 Z3 dC:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Compilation_test
-w1606324890
+w1606344225
 8C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/APB.v
 FC:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/APB.v
-!i122 593
-L0 10 62
+!i122 677
+L0 10 64
 Z4 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z5 !s108 1606325463.000000
+!s108 1606346905.000000
 !s107 C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/APB.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/APB.v|
 !i113 1
-Z6 o-work work
-Z7 tCvgOpt 0
+Z5 o-work work
+Z6 tCvgOpt 0
 n@a@p@b
 vBlock_Divider
 R0
 !i10b 1
-!s100 hfNGkcKlUz9BOX@7lAh0Z2
+!s100 klbHZgiNdm9c9GC<R_i>M1
 R1
-INSmk;cRbhjJD?5ZFK<70I1
+I[6<R2HzJP>;1f5eCnIYl>3
 R2
 R3
-w1606325459
+w1606344341
 8C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/Block_Divider.v
 FC:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/Block_Divider.v
-!i122 594
-L0 12 220
+!i122 678
+L0 12 242
 R4
 r1
 !s85 0
 31
-R5
+Z7 !s108 1606346906.000000
 !s107 C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/Block_Divider.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/Block_Divider.v|
 !i113 1
+R5
 R6
-R7
 n@block_@divider
 vtb_Visibal_Watermarking
 Z8 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
-Z9 !s110 1606325464
+R0
 !i10b 1
-!s100 ND1Z??]^K_DOi38ZZlVON2
+!s100 1CAKm3Kh_C:<hCgKb8iP[2
 R1
-I7SReF?GP?PVB1DVOn[FC12
+Ib^m3nQeA=kkTnNkZ3E>R>0
 R2
 S1
 R3
-w1606324841
-8C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/tb_Visibal_Watermarking.sv
-FC:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/tb_Visibal_Watermarking.sv
-!i122 595
-Z10 L0 4 182
+w1606346884
+8C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/tb_Visibal_Watermarking.v
+FC:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/tb_Visibal_Watermarking.v
+!i122 679
+L0 4 261
 R4
 r1
 !s85 0
 31
-R5
-!s107 C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/tb_Visibal_Watermarking.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/tb_Visibal_Watermarking.sv|
-!i113 1
-Z11 o-work work -sv
 R7
+!s107 C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/tb_Visibal_Watermarking.v|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/tb_Visibal_Watermarking.v|
+!i113 1
+Z9 o-work work -sv
+R6
 ntb_@visibal_@watermarking
 vtb_watermarking
 R8
@@ -97,7 +97,7 @@ w1606324311
 8C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Compilation_test/tb_watermarking_sv.sv
 FC:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Compilation_test/tb_watermarking_sv.sv
 !i122 582
-R10
+L0 4 182
 R4
 r1
 !s85 0
@@ -106,29 +106,31 @@ r1
 !s107 C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Compilation_test/tb_watermarking_sv.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Compilation_test/tb_watermarking_sv.sv|
 !i113 1
-R11
-R7
-vVisibal_Watermarking
 R9
+R6
+vVisibal_Watermarking
+R8
+R0
 !i10b 1
-!s100 c3SUe39aFXWE=[7leIlLg1
+!s100 `zJ[@<AFE2Rh6`PHSIDSX3
 R1
-IXL_>XmB[YQelc@3e0=3]F0
+I?>b[:fh;C^ESO:o^d?c;S0
 R2
+S1
 R3
-w1606325356
+w1606346900
 8C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/Visibal_Watermarking.v
 FC:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/Visibal_Watermarking.v
-!i122 596
-L0 11 255
+!i122 680
+L0 11 270
 R4
 r1
 !s85 0
 31
-!s108 1606325464.000000
-!s107 C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/Visibal_Watermarking.v|
-!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/Visibal_Watermarking.v|
-!i113 1
-R6
 R7
+!s107 C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/Visibal_Watermarking.v|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/Visibal_Watermarking.v|
+!i113 1
+R9
+R6
 n@visibal_@watermarking

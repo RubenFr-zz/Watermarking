@@ -1,9 +1,23 @@
-C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/APB.v {1 {vlog -work work -stats=none C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/APB.v
+C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/tb_Visibal_Watermarking.v {1 {vlog -work work -sv -stats=none C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/tb_Visibal_Watermarking.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module tb_Visibal_Watermarking
+
+Top level modules:
+	tb_Visibal_Watermarking
+
+} {} {}} C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/APB.v {1 {vlog -work work -stats=none C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/APB.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 -- Compiling module APB
 
 Top level modules:
 	APB
+
+} {} {}} C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/Visibal_Watermarking.v {1 {vlog -work work -sv -stats=none C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/Visibal_Watermarking.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Visibal_Watermarking
+
+Top level modules:
+	Visibal_Watermarking
 
 } {} {}} C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/Block_Divider.v {1 {vlog -work work -stats=none C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/Block_Divider.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
@@ -11,19 +25,5 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 
 Top level modules:
 	Block_Divider
-
-} {} {}} C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/Visibal_Watermarking.v {1 {vlog -work work -stats=none C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/Visibal_Watermarking.v
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module Visibal_Watermarking
-
-Top level modules:
-	Visibal_Watermarking
-
-} {} {}} C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/tb_Visibal_Watermarking.sv {1 {vlog -work work -sv -stats=none C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/tb_Visibal_Watermarking.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module tb_Visibal_Watermarking
-
-Top level modules:
-	tb_Visibal_Watermarking
 
 } {} {}}

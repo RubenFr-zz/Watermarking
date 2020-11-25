@@ -101,7 +101,7 @@ Block_Divider #(.Data_Depth(Data_Depth), .Max_Block_Size(Max_Block_Size)) Block_
 
 
 // BODY
-always @(posedge clk or negedge rst) begin : Main
+always @(posedge clk or posedge rst) begin : Main
 	
 	if(rst) begin
 		curr_state <= State0;
@@ -129,19 +129,22 @@ always @(posedge clk or negedge rst) begin : Main
 	else if(PSEL == 1'b1) begin
 	
 		// CPU INIT/READ
-		if (PENABLE == 1'b1 && PWRITE == APB_WRITE) begin	// ACCESS WRITE
+		if (PENABLE == 1'b1 && PWRITE == APB_WRITE) 
+		begin	// ACCESS WRITE
 			APB_WriteData <= PWDATA;
 			APB_addr <= PADDR;
 			APB_CTRL <= APB_WRITE;
 		end
 		
-		else if (PENABLE == 1'b1 && PWRITE == APB_READ) begin 	// ACCESS READ
+		else if (PENABLE == 1'b1 && PWRITE == APB_READ) 	// ACCESS READ
+		begin
 			APB_addr <= PADDR;
 			APB_CTRL <= APB_READ;
 			CPU_wait_data <= 1'b1;
 		end
 		
-		else if (CPU_wait_data) begin // Data ready
+		else if (CPU_wait_data)  // Data ready
+		begin
 			CPU_wait_data <= ~CPU_wait_data;
 			PRDATA <= APB_ReadData;
 			CPU_data_rdy <= 1'b1;
@@ -156,10 +159,11 @@ always @(posedge clk or negedge rst) begin : Main
 		
 	// CPU not in action
 	// PROCESSING THE DATA
-	else if (start && !Image_Done) begin
-	
+	else if (start && !Image_Done) 
+	begin
 		////////////////////////// Start the process ////////////////////////////////
-		if (curr_state == State0) begin	
+		if (curr_state == State0) 
+		begin	
 			curr_addr = 'd1;				// First addr to 0x01 (White pixel)
 			APB_addr <= curr_addr;
 			APB_CTRL <= APB_READ;
@@ -168,7 +172,8 @@ always @(posedge clk or negedge rst) begin : Main
 		end
 	
 		/////////////////// Loading parameters (0x01 - 0x09) /////////////////////////
-		else if (curr_state == State1) begin
+		else if (curr_state == State1) 
+		begin
 	
 			APB_addr <= curr_addr;
 			APB_CTRL <= APB_READ;
@@ -180,7 +185,8 @@ always @(posedge clk or negedge rst) begin : Main
 				4:	M	<= APB_ReadData[Data_Depth-1:0];
 			endcase
 				
-			if (curr_addr == 'd10) begin		// On the next clk the register at addr 0x0A (First Pixel) will be on the bus
+			if (curr_addr == 'd10) 		// On the next clk the register at addr 0x0A (First Pixel) will be on the bus
+			begin
 				offset <= curr_addr;
 				row <= 'd0;
 				col <= 'd0;
@@ -193,22 +199,27 @@ always @(posedge clk or negedge rst) begin : Main
 		end
 	
 		////////////////////// Loading Primary_block ////////////////////////////
-		else if (curr_state == State2) begin
-			if (col + 1 == M) begin		// Next col isn't in the block
+		else if (curr_state == State2) 
+		begin
+			if (col + 1 == M) 		// Next col isn't in the block
+			begin
 				col <= 0;
-				if (row + 1 == M) begin		// Next row isn't in the block
+				if (row + 1 == M) 		// Next row isn't in the block
+				begin
 					row <= 0;
 					APB_addr <= offset + Np*Np;	// First pixel of next Watermark_block
 					APB_CTRL <= APB_READ;
 					curr_state <= State3;
 				end
-				else begin
+				else 
+				begin
 					row <= row + 1;
 					APB_addr <= offset + ((row+1) * Np);	// Next pixel in the block
 					APB_CTRL <= APB_READ;
 				end
 			end
-			else begin
+			else 
+			begin
 				col <= col + 1;
 				APB_addr <= offset + ((col+1) + row * Np);	// Next pixel in the block
 				APB_CTRL <= APB_READ;
@@ -216,10 +227,13 @@ always @(posedge clk or negedge rst) begin : Main
 		end
 				
 		////////////////////// Loading Watermark_block ////////////////////////////
-		else if (curr_state == State3) begin
-			if (col + 1 == M) begin		// Next col isn't in the block
+		else if (curr_state == State3) 
+		begin
+			if (col + 1 == M) 		// Next col isn't in the block
+			begin
 				col <= 0;
-				if (row + 1 == M) begin		// Next row isn't in the block
+				if (row + 1 == M) 		// Next row isn't in the block
+				begin
 					row <= 0;
 					count <= count + 1;
 					offset <= offset + (((count + 1) % (Np/M) == 0) ? Np*(M-1)+M : M);	// First pixel of next primary block
@@ -227,13 +241,15 @@ always @(posedge clk or negedge rst) begin : Main
 					APB_CTRL <= APB_READ;
 					curr_state = State4;
 				end
-				else begin
+				else 
+				begin
 					row <= row + 1;
 					APB_addr <= offset + Np*Np + ((row+1) * Np);	// Next pixel in the block
 					APB_CTRL <= APB_READ;
 				end
 			end
-			else begin
+			else 
+			begin
 				col <= col + 1;
 				APB_addr <= offset + Np*Np + ((col+1) + row * Np);	// Next pixel in the block
 				APB_CTRL <= APB_READ;
@@ -243,20 +259,22 @@ always @(posedge clk or negedge rst) begin : Main
 		///////////////////////// Processing Block ////////////////////////////////
 		///////// Block the run until the whole block has been processed //////////
 		///////////////////////////////////////////////////////////////////////////
-		else if (curr_state == State4) begin
+		else if (curr_state == State4) 
+		begin
 			if (block_done) begin
-				if (count == (Np*Np)/(M*M)) begin
+				if (count == (Np*Np)/(M*M)) 
+				begin
 					Image_Done <= 1'b1;
 					curr_state <= State0;
 				end
-				else begin
+				else 
+				begin
 					row <= 'd0;
 					col <= 'd0;
 					curr_state = State2;
 				end
 			end
 		end
-		
 	end	// start & !Image_Done
 end	// Main
     

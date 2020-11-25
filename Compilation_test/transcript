@@ -741,3 +741,195 @@ quit -sim
 # Compile of Visibal_Watermarking_sv.sv was successful.
 # Compile of Block_Divider_sv.sv was successful.
 # 4 compiles, 0 failed with no errors.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of tb_Visibal_Watermarking.sv was successful.
+# Compile of Visibal_Watermarking.v failed with 1 errors.
+# 4 compiles, 1 failed with 1 error.
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of tb_Visibal_Watermarking.sv was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.tb_Visibal_Watermarking
+# vsim -gui work.tb_Visibal_Watermarking 
+# Start time: 19:29:49 on Nov 25,2020
+# Loading sv_std.std
+# Loading work.tb_Visibal_Watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+# ** Error: (vsim-3043) Unresolved reference to 'continue'.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_Visibal_Watermarking/Visibal_Watermarking_1/Block_Divider File: C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/Block_Divider.v Line: 139
+# Error loading design
+# End time: 19:29:50 on Nov 25,2020, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 8
+# Compile of APB.v was successful.
+# Compile of Block_Divider.v was successful.
+# Compile of tb_Visibal_Watermarking.sv was successful.
+# Compile of Visibal_Watermarking.v was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.tb_Visibal_Watermarking
+# vsim -gui work.tb_Visibal_Watermarking 
+# Start time: 19:31:12 on Nov 25,2020
+# Loading sv_std.std
+# Loading work.tb_Visibal_Watermarking
+# Loading work.Visibal_Watermarking
+# Loading work.APB
+# Loading work.Block_Divider
+run
+run
+run
+# Output[         0] = 255
+# Output[         1] = 255
+# Output[         2] = 255
+# Output[        12] = 255
+# Output[        13] = 255
+# Output[        14] = 255
+# Output[        24] = 255
+# Output[        25] = 255
+# Output[        26] = 255
+# Output[         3] = 201
+# Output[         4] = 110
+# Output[         5] = 245
+# Output[        15] = 198
+# Output[        16] =  97
+# Output[        17] = 138
+# Output[        27] = 197
+# Output[        28] = 104
+# Output[        29] = 161
+# Output[         6] = 255
+# Output[         7] = 255
+# Output[         8] = 255
+# Output[        18] = 237
+# Output[        19] = 255
+# Output[        20] = 221
+# Output[        30] = 152
+# Output[        31] = 164
+# Output[        32] = 176
+# Output[         9] = 255
+# Output[        10] = 255
+# Output[        11] = 255
+# Output[        21] = 166
+# Output[        22] = 175
+# Output[        23] = 255
+# Output[        33] = 211
+# Output[        34] = 160
+# Output[        35] = 255
+# Output[        36] = 255
+# Output[        37] = 255
+# Output[        38] = 228
+# Output[        48] = 255
+# Output[        49] = 156
+# Output[        50] = 113
+# Output[        60] = 143
+# Output[        61] = 118
+# Output[        62] = 170
+run
+# Output[        39] = 152
+# Output[        40] = 156
+# Output[        41] = 195
+# Output[        51] = 157
+# Output[        52] = 149
+# Output[        53] = 161
+# Output[        63] = 207
+# Output[        64] = 226
+# Output[        65] = 215
+# Output[        42] = 221
+# Output[        43] = 211
+# Output[        44] = 218
+# Output[        54] = 235
+# Output[        55] = 229
+# Output[        56] = 178
+# Output[        66] = 231
+# Output[        67] = 209
+# Output[        68] = 147
+# Output[        45] = 172
+# Output[        46] = 239
+# Output[        47] = 255
+# Output[        57] = 174
+# Output[        58] = 255
+# Output[        59] = 255
+# Output[        69] = 245
+# Output[        70] = 255
+# Output[        71] = 255
+# Output[        72] = 215
+# Output[        73] = 144
+# Output[        74] = 190
+# Output[        84] = 255
+# Output[        85] = 239
+# Output[        86] = 173
+# Output[        96] = 255
+# Output[        97] = 255
+# Output[        98] = 255
+# Output[        75] = 244
+# Output[        76] = 174
+# Output[        77] = 149
+# Output[        87] = 161
+# Output[        88] = 225
+# Output[        89] = 210
+# Output[        99] = 181
+# Output[       100] = 149
+# Output[       101] = 158
+# Output[        78] = 197
+run
+# Output[        79] = 179
+# Output[        80] = 118
+# Output[        90] = 166
+# Output[        91] =  94
+# Output[        92] =  69
+# Output[       102] =  94
+# Output[       103] =  77
+# Output[       104] =  97
+# Output[        81] = 205
+# Output[        82] = 255
+# Output[        83] = 255
+# Output[        93] = 136
+# Output[        94] = 255
+# Output[        95] = 255
+# Output[       105] = 121
+# Output[       106] = 176
+# Output[       107] = 255
+# Output[       108] = 255
+# Output[       109] = 255
+# Output[       110] = 255
+# Output[       120] = 255
+# Output[       121] = 255
+# Output[       122] = 255
+# Output[       132] = 255
+# Output[       133] = 255
+# Output[       134] = 255
+# Output[       111] = 196
+# Output[       112] = 128
+# Output[       113] =  93
+# Output[       123] = 196
+# Output[       124] =  80
+# Output[       125] = 188
+# Output[       135] = 252
+# Output[       136] = 218
+# Output[       137] = 255
+# Output[       114] = 171
+# Output[       115] = 230
+# Output[       116] = 156
+# Output[       126] = 255
+# Output[       127] = 255
+# Output[       128] = 255
+# Output[       138] = 255
+# Output[       139] = 255
+# Output[       140] = 255
+# Output[       117] = 117
+# Output[       118] = 132
+# Output[       119] = 255
+# Output[       129] = 233
+# Output[       130] = 246
+# Output[       131] = 255
+# Output[       141] = 255
+# Output[       142] = 255
+# Output[       143] = 255
+# FINISHED
+# ** Note: $finish    : C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/tb_Visibal_Watermarking.sv(105)
+#    Time: 3098 ns  Iteration: 1  Instance: /tb_Visibal_Watermarking
+# 1
+# Break in NamedBeginStat load_pixel at C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Visibal_Watermarking_lib/hdl/tb_Visibal_Watermarking.sv line 105
+# End time: 19:32:44 on Nov 25,2020, Elapsed time: 0:01:32
+# Errors: 0, Warnings: 3

@@ -223,7 +223,7 @@ always @(posedge clk or negedge rst) begin : Main
 					row <= 0;
 					count <= count + 1;
 					offset <= offset + (((count + 1) % (Np/M) == 0) ? Np*(M-1)+M : M);	// First pixel of next primary block
-					APB_addr <= offset + (((count + 1) % (Np/M) == 0) ? Np*(M-1)+M : M);;	// First pixel of next Watermark
+					APB_addr <= offset + (((count + 1) % (Np/M) == 0) ? Np*(M-1)+M : M);	// First pixel of next Watermark
 					APB_CTRL <= APB_READ;
 					curr_state = State4;
 				end

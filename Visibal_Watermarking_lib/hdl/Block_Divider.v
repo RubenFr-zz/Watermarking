@@ -135,8 +135,8 @@ always @(posedge clk or negedge rst) begin: parameter_calculator
 									? (Pixel_in - ((White_Pixel+1)/2)) 
 									: (((White_Pixel+1)/2) - Pixel_in));
 			/* Sigma_G - Eqn5 */
-			if (index == 0) 
-				continue;
+			if (index == 0) begin
+			end
 			else if (index < M) begin					// row = 0, col > 0 - There is a pixel on the left
 				sigma_G <= sigma_G + Pixel_in + 
 									((Primary_Block[index - 1] > Pixel_in) 

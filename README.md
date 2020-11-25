@@ -2,7 +2,8 @@
 
 ## Usage
 
-Pick an image you want to watermark and run !
+In tb_Visibal_Watermarking.v replace st0 - st4 with the inputs/output of the system
+Simulate tb_Visibal_Watermarking.v with ModelSim
 
 ## Version
 

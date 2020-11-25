@@ -26,23 +26,22 @@ module Visibal_Watermarking #(
 	input wire 						rst,    	// Reset active low
 	output reg 	[Amba_Word-1:0]  	PRDATA,     // APB Read Data Bus
 	output reg 				 		Image_Done, // State indicator
-	output reg 	[Data_Depth-1:0] 	Pixel_Data, // Modified pixel 
-	output reg						new_pixel	// New Pixel Indicator 
+	output wire 	[Data_Depth-1:0] 	Pixel_Data, // Modified pixel 
+	output wire						new_pixel	// New Pixel Indicator 
 );
 
-// MACROS
-`define APB_READ  	1'b0
-`define APB_WRITE  	1'b1
+// CTRL READ WRITE
+localparam APB_READ  = 1'b0;
+localparam APB_WRITE = 1'b1;
 
 
 //States
-localparam State0 = 6'b000001;	// Reset
-localparam State1 = 6'b000010;	// Parameters init
-localparam State2 = 6'b000100;	// Primary block loading
-localparam State3 = 6'b001000;	// Watermark block loading
-localparam State4 = 6'b010000;  // Parameters Calculation
-localparam State5 = 6'b100000;	// Result Calculator
-reg	[6-1:0]	curr_state;
+localparam State0 = 5'b00001;	// Reset
+localparam State1 = 5'b00010;	// Parameters init
+localparam State2 = 5'b00100;	// Primary block loading
+localparam State3 = 5'b01000;	// Watermark block loading
+localparam State4 = 5'b10000;   // Parameters Calculation
+reg	[5-1:0]	curr_state;
 
 // APB REGISTERS
 reg 						APB_CTRL;		// 0 - ReadData, 1 - WriteData
@@ -52,9 +51,9 @@ wire 	[Amba_Word-1:0] 	APB_ReadData;
 wire						start;	
 
 // Parameters
-reg [Data_Depth-1:0]	M; 				// Number of pixels per line/colomn per block
-reg [Data_Depth-1:0]	Np;
-reg [Data_Depth-1:0]	Nw;
+reg [Data_Depth-1:0]	M; 				// Number of pixels per line/colomn per block max 720/10=72 (7bits)
+reg [10-1:0]	Np;
+reg [10-1:0]	Nw;
 reg [7-1:0]				count;			// How many blocks have been processed (max 10*10=100 - 7 bits)
 
 
@@ -66,7 +65,6 @@ reg						first_read;			// First read from APB -> no DATA available
 reg [Amba_Word-1:0]		DATA;				// Data read from APB
 
 // PROCESSING
-reg 						done;				// Processed all the pixels
 reg [Amba_Addr_Depth:0]		curr_addr;			// Current data address we want to reach
 reg [Block_Depth-1:0] 		row;
 reg [Block_Depth-1:0] 		col;
@@ -74,6 +72,7 @@ reg [Amba_Addr_Depth:0]		offset;				// Start of the curr block
 reg [9:0]					curr_block;
 wire						block_done;
 
+reg test;
 
 // MODULES
 
@@ -92,8 +91,8 @@ APB #(.Amba_Word(Amba_Word),.Amba_Addr_Depth(Amba_Addr_Depth)) Data_Bank(
 Block_Divider #(.Data_Depth(Data_Depth), .Max_Block_Size(Max_Block_Size)) Block_Divider(
 	.clk(clk),
 	.rst(rst),
-	.en(start),				
-	.Pixel_In(DATA[Data_Depth-1:0]),
+	.en(start && !Image_Done),				
+	.Pixel_in(APB_ReadData[Data_Depth-1:0]),
 	.Pixel_Data(Pixel_Data),
 	.new_pixel(new_pixel),
 	.done(block_done)
@@ -104,7 +103,7 @@ Block_Divider #(.Data_Depth(Data_Depth), .Max_Block_Size(Max_Block_Size)) Block_
 // BODY
 always @(posedge clk or negedge rst) begin : Main
 	
-	if(!rst) begin
+	if(rst) begin
 		curr_state <= State0;
 		APB_CTRL <= 1'b0;
 		APB_addr <= {Amba_Addr_Depth+1{1'b0}};
@@ -114,35 +113,37 @@ always @(posedge clk or negedge rst) begin : Main
 		CPU_wait_data <= 1'b0;
 		CPU_data_rdy <= 1'b0;
 		DATA <= {Amba_Word{1'bz}};
-		done <= 1'b0;
+		Image_Done <= 1'b0;
 		curr_addr <= {{Amba_Addr_Depth{1'b0}}, 1'b1};		// Reset addr to 0x01 (White pixel)
 		offset <= {{Amba_Addr_Depth-8{1'b0}}, 8'h0A};		// Addr first pixel
 		row <= 'd0;
-		col <= 'd0;		
+		col <= 'd0;	
+			
+		test = 0;
 	end
 	
 	//AMBA PROTOCOL
 	// IDLE		--> PSEL = 0 & PENABLE = 0 	(Do nothing)	(CPU SIDE)
 	// SETUP 	--> PSEL = 1 & PENABLE = 0	(transfer) 		(CPU SIDE)
 	// ACCESS 	--> PSEL = 1 & PENABLE = 1 	(while PREADY = 0 stay in this state) 	(Our SIDE)
-	else if(PSEL) begin
+	else if(PSEL == 1'b1) begin
 	
 		// CPU INIT/READ
-		if (PENABLE && PWRITE) begin	// ACCESS WRITE
+		if (PENABLE == 1'b1 && PWRITE == APB_WRITE) begin	// ACCESS WRITE
 			APB_WriteData <= PWDATA;
 			APB_addr <= PADDR;
-			APB_CTRL <= `APB_WRITE;
+			APB_CTRL <= APB_WRITE;
 		end
 		
-		else if (PENABLE && ~PWRITE) begin 	// ACCESS READ
+		else if (PENABLE == 1'b1 && PWRITE == APB_READ) begin 	// ACCESS READ
 			APB_addr <= PADDR;
-			APB_CTRL <= `APB_READ;
+			APB_CTRL <= APB_READ;
 			CPU_wait_data <= 1'b1;
 		end
 		
 		else if (CPU_wait_data) begin // Data ready
 			CPU_wait_data <= ~CPU_wait_data;
-			DATA <= APB_ReadData;
+			PRDATA <= APB_ReadData;
 			CPU_data_rdy <= 1'b1;
 			first_read <= 1'b1;
 		end
@@ -155,13 +156,13 @@ always @(posedge clk or negedge rst) begin : Main
 		
 	// CPU not in action
 	// PROCESSING THE DATA
-	else if (start && !done) begin
+	else if (start && !Image_Done) begin
 	
 		////////////////////////// Start the process ////////////////////////////////
 		if (curr_state == State0) begin	
 			curr_addr = 'd1;				// First addr to 0x01 (White pixel)
 			APB_addr <= curr_addr;
-			APB_CTRL <= `APB_READ;
+			APB_CTRL <= APB_READ;
 			curr_addr <= curr_addr + 1;
 			curr_state <= State1;
 		end
@@ -170,13 +171,13 @@ always @(posedge clk or negedge rst) begin : Main
 		else if (curr_state == State1) begin
 	
 			APB_addr <= curr_addr;
-			APB_CTRL <= `APB_READ;
-			DATA <= APB_ReadData;			// Register from the APB
+			APB_CTRL <= APB_READ;
+			// DATA <= APB_ReadData;			// Register from the APB
 			
 			case(curr_addr - 1)
-				2:	Np	<= DATA[Data_Depth-1:0];
-				3:	Nw	<= DATA[Data_Depth-1:0];
-				4:	M	<= DATA[Data_Depth-1:0];
+				2:	Np	<= APB_ReadData[10-1:0];
+				3:	Nw	<= APB_ReadData[10-1:0];
+				4:	M	<= APB_ReadData[Data_Depth-1:0];
 			endcase
 				
 			if (curr_addr == 'd10) begin		// On the next clk the register at addr 0x0A (First Pixel) will be on the bus
@@ -193,48 +194,50 @@ always @(posedge clk or negedge rst) begin : Main
 	
 		////////////////////// Loading Primary_block ////////////////////////////
 		else if (curr_state == State2) begin
-			col = col + 1;
-			
-			if (col > M) begin		// End of Block line
-				col <= 'd0;
-				row <= row + 'd1;
-			end
-			if (row > M) begin		// End of Block
-				col <= 'd0;
-				row <= 'd0;
-				APB_addr <= offset + M*M;	// First pixel of next Watermark_block
-				APB_CTRL <= `APB_READ;
-				curr_state = State3;
+			if (col + 1 == M) begin		// Next col isn't in the block
+				col <= 0;
+				if (row + 1 == M) begin		// Next row isn't in the block
+					row <= 0;
+					APB_addr <= offset + Np*Np;	// First pixel of next Watermark_block
+					APB_CTRL <= APB_READ;
+					curr_state <= State3;
+				end
+				else begin
+					row <= row + 1;
+					APB_addr <= offset + ((row+1) * Np);	// Next pixel in the block
+					APB_CTRL <= APB_READ;
+				end
 			end
 			else begin
-				APB_addr <= offset + (col + row * M);	// Next pixel in the block
-				APB_CTRL <= `APB_READ;
+				col <= col + 1;
+				APB_addr <= offset + ((col+1) + row * Np);	// Next pixel in the block
+				APB_CTRL <= APB_READ;
 			end
-			DATA <= APB_ReadData;			// Register from the APB
 		end
 				
 		////////////////////// Loading Watermark_block ////////////////////////////
 		else if (curr_state == State3) begin
-			col = col + 1;
-			
-			if (col > M) begin		// End of Block line
-				col <= 'd0;
-				row <= row + 'd1;
-			end
-			if (row > M) begin		// End of Block
-				col <= 'd0;
-				row <= 'd0;
-				count <= count + 1;
-				offset <= offset + ((count % M == 0) ? M*M : M);	// First pixel of next primary block+
-				APB_addr <= offset;			
-				APB_CTRL <= `APB_READ;
-				curr_state = State4;
+			if (col + 1 == M) begin		// Next col isn't in the block
+				col <= 0;
+				if (row + 1 == M) begin		// Next row isn't in the block
+					row <= 0;
+					count <= count + 1;
+					offset <= offset + (((count + 1) % (Np/M) == 0) ? Np*(M-1)+M : M);	// First pixel of next primary block
+					APB_addr <= offset + (((count + 1) % (Np/M) == 0) ? Np*(M-1)+M : M);;	// First pixel of next Watermark
+					APB_CTRL <= APB_READ;
+					curr_state = State4;
+				end
+				else begin
+					row <= row + 1;
+					APB_addr <= offset + Np*Np + ((row+1) * Np);	// Next pixel in the block
+					APB_CTRL <= APB_READ;
+				end
 			end
 			else begin
-				APB_addr <= offset + M*M + (col + row * M);		// Next pixel in the block
-				APB_CTRL <= `APB_READ;
+				col <= col + 1;
+				APB_addr <= offset + Np*Np + ((col+1) + row * Np);	// Next pixel in the block
+				APB_CTRL <= APB_READ;
 			end
-			DATA <= APB_ReadData;			// Register from the APB
 		end
 		
 		///////////////////////// Processing Block ////////////////////////////////
@@ -243,19 +246,20 @@ always @(posedge clk or negedge rst) begin : Main
 		else if (curr_state == State4) begin
 			if (block_done) begin
 				if (count == (Np*Np)/(M*M)) begin
-					done <= 1'b1;
+					Image_Done <= 1'b1;
 					curr_state <= State0;
 				end
 				else begin
+					row <= 'd0;
+					col <= 'd0;
 					curr_state = State2;
 				end
 			end
 		end
-	end
-end
+		
+	end	// start & !Image_Done
+end	// Main
     
-assign PRDATA = (CPU_data_rdy) ? DATA : {(Amba_Word){1'bz}};
-assign Image_Done = done;
 
   
 endmodule // Visibal_Watermarking

@@ -33,14 +33,16 @@ localparam State4 = 6'b010000;  // Parameters Calculation
 localparam State5 = 6'b100000;	// Result Calculator
 reg	[6-1:0]	curr_state;
 
+localparam Max_Size_DATA = 3*3; // M*M
+
 //Internal signal declarations
 
 integer row, col;
 
 // reg [Data_Depth-1:0] 	Primary_Block 		[Max_Block_Size-1:0]; 	// max 72*72 pixels
 // reg [Data_Depth-1:0] 	Watermark_Block 	[Max_Block_Size-1:0]; 	// max 72*72 pixels
-reg [Data_Depth-1:0] 	Primary_Block 		[4-1:0]; 	// max 72*72 pixels
-reg [Data_Depth-1:0] 	Watermark_Block 	[4-1:0]; 	// max 72*72 pixels
+reg [Data_Depth-1:0] 	Primary_Block 		[Max_Size_DATA-1:0]; 	// max 72*72 pixels
+reg [Data_Depth-1:0] 	Watermark_Block 	[Max_Size_DATA-1:0]; 	// max 72*72 pixels
 reg	[13-1:0] 			index;										// max addr 72*72 = 5041 (13 bits)
 reg						new_data;
 	

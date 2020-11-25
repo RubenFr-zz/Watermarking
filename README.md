@@ -1,7 +1,9 @@
 # Watermarking
 
-Problems:
+## Usage
 
-	Redo all the parameters calculation in Block_divider to work with non blocking assignments :
-		do one step of the calculation every iterations
-	Check in every state that the change occurs at the clock before
+Pick an image you want to watermake and run !
+
+## Version
+
+Working version (tested 4x4, 6x6 and 12x12 images)

@@ -8,6 +8,7 @@ localparam Amba_Addr_Depth = 20;	// Size of the data bank
 localparam Data_Depth = 8;			// Bit depth of the pixel
 localparam Block_Depth = 7;			// Max pixel per row/colomn in block is 72 (7 bits)
 localparam Max_Block_Size = 5184;	// Max pixels that a block can countain (720 / 10)^2 = 5184
+localparam Max_Img_Size = 12;
 
 integer fd, index;
 integer i = 0;
@@ -16,9 +17,9 @@ integer count=0, row=0, col=0, offset=0;
 
 integer test;
 
-reg [9-1:0] Np = 4;
-reg [9-1:0] Nw = 4;
-reg [Data_Depth-1:0] M = 2;
+reg [9-1:0] Np = Max_Img_Size;
+reg [9-1:0] Nw = Max_Img_Size;
+reg [Data_Depth-1:0] M = 3;
 reg [Data_Depth-1:0] Bthr = 20;
 reg [Data_Depth-1:0] Amin = 83;
 reg [Data_Depth-1:0] Amax = 96;
@@ -26,10 +27,10 @@ reg [Data_Depth-1:0] Bmin = 25;
 reg [Data_Depth-1:0] Bmax = 31;
 reg [Data_Depth-1:0] Iwhite = 255;
 
-reg	[Data_Depth-1:0] PrimaryImg [16-1:0];
-reg	[Data_Depth-1:0] WatermarkImg [16-1:0];
-reg [Data_Depth-1:0] CorrectResults [16-1:0];
-reg [Data_Depth-1:0] Output [16-1:0];
+reg	[Data_Depth-1:0] PrimaryImg [(Max_Img_Size*Max_Img_Size)-1:0];
+reg	[Data_Depth-1:0] WatermarkImg [(Max_Img_Size*Max_Img_Size)-1:0];
+reg [Data_Depth-1:0] CorrectResults [(Max_Img_Size*Max_Img_Size)-1:0];
+reg [Data_Depth-1:0] Output [(Max_Img_Size*Max_Img_Size)-1:0];
 reg [Data_Depth-1:0] data;
 reg [Data_Depth-1:0] str;
 
@@ -97,12 +98,12 @@ always @(posedge clk) begin: load_pixel
 	
 	if (start == 1) begin
 		if (Image_Done) begin
-		for (i = 0; i < Np*Np; i = i+1) begin
-			$fwrite(fd,"%d\n", Output[i]);
+			for (i = 0; i < Np*Np; i = i+1) begin
+				$fwrite(fd,"%d\n", Output[i]);
+			end
+			$display("FINISHED");
+			$finish;
 		end
-		$display("FINISHED");
-		$finish;
-	end
 		PWRITE <= 'b0;
 		PSEL <= 'b0;		// release the CPU
 		PENABLE <= 'b0;
@@ -150,7 +151,7 @@ always @(negedge new_pixel) begin
 			if (row + 1 == M) begin		// Next row isn't in the block
 				row <= 0;
 				count <= count + 1;
-				offset <= offset + (((count + 1) % M == 0) ? M*(M+1) : M);	// First pixel of next primary block
+				offset <= offset + (((count + 1) % (Np/M) == 0) ? Np*(M-1)+M : M);	// First pixel of next primary block
 			end
 			else begin
 				row <= row + 1;

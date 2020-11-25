@@ -222,8 +222,8 @@ always @(posedge clk or negedge rst) begin : Main
 				if (row + 1 == M) begin		// Next row isn't in the block
 					row <= 0;
 					count <= count + 1;
-					offset <= offset + (((count + 1) % M == 0) ? M*(M+1) : M);	// First pixel of next primary block
-					APB_addr <= offset + (((count + 1) % M == 0) ? M*(M+1) : M);;	// First pixel of next Watermark_block
+					offset <= offset + (((count + 1) % (Np/M) == 0) ? Np*(M-1)+M : M);	// First pixel of next primary block
+					APB_addr <= offset + (((count + 1) % (Np/M) == 0) ? Np*(M-1)+M : M);;	// First pixel of next Watermark
 					APB_CTRL <= APB_READ;
 					curr_state = State4;
 				end
@@ -256,8 +256,9 @@ always @(posedge clk or negedge rst) begin : Main
 				end
 			end
 		end
-	end
-end
+		
+	end	// start & !Image_Done
+end	// Main
     
 
   

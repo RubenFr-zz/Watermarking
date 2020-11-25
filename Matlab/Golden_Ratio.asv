@@ -1,17 +1,18 @@
 clc;
 clear;
-for k=1:1:10
-    %filename = sprintf('primary_image_%d.jpg',k);
-    %I = imread(filename);
-    %Nx = randi([200 720]);
-    %I = imresize(I,[Nx Nx]);
-    %W = imread('watermark_image.png');
-    %I = rgb2gray(I);
-    %W = rgb2gray(W);
+for k=1:1:3
+    filename = sprintf('primary_image_%d.jpg',k);
+    I = imread(filename);
+%     Nx = randi([200 720]);
+    Nx = 20;
+    I = imresize(I,[Nx Nx]);
+    W = imread('watermark_image.png');
+    I = rgb2gray(I);
+    W = rgb2gray(W);
     Amax_min = 0.90;    % min value of alpha
     Amax_max = 0.99;    % max value of alpha
     Amax = Amax_min+rand(1)*(Amax_max-Amax_min);    % random value of alpha between (0.9, 0.99)
-    Amax = round(Amax,2);   
+    Amax = round(Amax,2);   % round to 0.xx
     Amin_min = 0.80;
     Amin_max = Amax;
     Amin = Amin_min+rand(1)*(Amin_max-Amin_min);
@@ -31,6 +32,7 @@ for k=1:1:10
     Nw = Nw(1);
     N = Np;
     M = randi([1 round(N/10)]);
+%     M = 1;
     while ((mod(N,M)))
         M = randi([1 round(N/10)]);
     end
@@ -90,6 +92,7 @@ for k=1:1:10
                 end
                 uk = round(sigmau / (M*M*256));
                 sk = round((2*sigmas) / (M*M*256));
+                disp(sk)
                 ak = round(Amin + ((Amax - Amin)*(2^(-(uk-0.5)^2)))/(sk));
                 bk = round(Bmin + (sk)*((Bmax - Bmin)*(1-2^(-(uk-0.5)^2))));
                 for rows=1:1:M

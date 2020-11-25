@@ -1,9 +1,10 @@
 clc;
 clear;
-for k=1:1:1
+for k=1:1:3
     filename = sprintf('primary_image_%d.jpg',k);
     I = imread(filename);
-    Nx = randi([200 720]);
+%     Nx = randi([200 720]);
+    Nx = 4;
     I = imresize(I,[Nx Nx]);
     W = imread('watermark_image.png');
     I = rgb2gray(I);
@@ -30,8 +31,8 @@ for k=1:1:1
     Nw = (size(W));
     Nw = Nw(1);
     N = Np;
-    M = randi([1 round(N/10)]);
-%     M = 1;
+%     M = randi([1 round(N/10)]);
+    M = 2;
     while ((mod(N,M)))
         M = randi([1 round(N/10)]);
     end
@@ -109,14 +110,14 @@ for k=1:1:1
     % Primary Image
     outname = sprintf('primary_image_%d.txt',k);
     fid = fopen(outname, 'wt');
-    fprintf(fid, '%d\n', N); % decimal writing of image row/cols size
+%     fprintf(fid, '%d\n', N); % decimal writing of image row/cols size
     fprintf(fid, '%d\n', I); % decimal writing of pixels value
     disp('Text file write done');disp(' ');
     fclose(fid);
     % Watermark Image
     outname = sprintf('watermark_image_%d.txt',k);
     fid = fopen(outname, 'wt');
-    fprintf(fid, '%d\n', N); % decimal writing of image row/cols size
+%     fprintf(fid, '%d\n', N); % decimal writing of image row/cols size
     fprintf(fid, '%d\n', W); % decimal writing of pixels value
     disp('Text file write done');disp(' ');
     fclose(fid);

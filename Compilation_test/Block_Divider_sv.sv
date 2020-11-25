@@ -73,7 +73,6 @@ always @(posedge clk or negedge rst) begin: parameter_calculator
 	end
 	
 	else if (en) begin
-		$display("entered in enable");
 	
 		if (curr_state == State0) begin 	//reset
 			sigma_G <= 0;
@@ -86,7 +85,12 @@ always @(posedge clk or negedge rst) begin: parameter_calculator
 			ak		<= 0;
 			bk		<= 0;
 			done	<= 0;
-			curr_state <= State1;
+			if (done)
+				curr_state <= State2;
+			else begin
+				new_pixel <= 0;
+				curr_state <= State1;
+			end
 		end
 		
 		else if (curr_state == State1) begin 	// init
@@ -112,15 +116,57 @@ always @(posedge clk or negedge rst) begin: parameter_calculator
 		end
 
 		else if (curr_state == State2) begin 	// Primary_Block loading
-			
 			Primary_Block[index] <= Pixel_in;
-			
-			if (index + 1 < M * M)
+			if (index < (M * M) - 1) begin		
 				index <= index + 1;
-			else begin
+			end
+			else begin					// Next pixel is the first of Watermark_Block
 				index <= 0;
 				curr_state <= State3;
 			end
+			
+			// $display("sigma_M = %d, sigma_S = %d, sigma_G = %d", sigma_M, sigma_S, sigma_G);
+			
+			/////////////////////////////////////////////////////////////////////////
+			/* Sigma_M - Eqn3 */
+			sigma_M <= sigma_M + Pixel_in;
+			/* Sigma_S - Eqn4 */
+			sigma_S <= sigma_S + ((Pixel_in > ((White_Pixel+1)/2)) 
+									? (Pixel_in - ((White_Pixel+1)/2)) 
+									: (((White_Pixel+1)/2) - Pixel_in));
+			/* Sigma_G - Eqn5 */
+			if (index == 0) 
+				continue;
+			else if (index < M) begin					// row = 0, col > 0 - There is a pixel on the left
+				sigma_G <= sigma_G + Pixel_in + 
+									((Primary_Block[index - 1] > Pixel_in) 
+									? (Primary_Block[index - 1] - Pixel_in) 
+									: (Pixel_in - Primary_Block[index - 1]));
+			end
+			else if (index == (M*M) - 1) begin
+				sigma_G <= sigma_G + Pixel_in + Pixel_in +
+									((Primary_Block[index - 1] > Pixel_in) 
+									? (Primary_Block[index - 1] - Pixel_in) 
+									: (Pixel_in - Primary_Block[index - 1])) +
+									((Primary_Block[index - M] > Pixel_in) 
+									? (Primary_Block[index - M] - Pixel_in) 
+									: (Pixel_in - Primary_Block[index - M]));
+			end
+			else if (index % M == 0 ) begin 			// col = 0 (row > 0) - There is a pixel above
+				sigma_G <= sigma_G + Pixel_in +
+									((Primary_Block[index - M] > Pixel_in) 
+									? (Primary_Block[index - M] - Pixel_in) 
+									: (Pixel_in - Primary_Block[index - M]));
+			end
+			else begin									// col > 0, row > 0 - There is a pixel above and on the left
+				sigma_G <= sigma_G + ((Primary_Block[index - 1] > Pixel_in) 
+									? (Primary_Block[index - 1] - Pixel_in) 
+									: (Pixel_in - Primary_Block[index - 1])) +
+									((Primary_Block[index - M] > Pixel_in) 
+									? (Primary_Block[index - M] - Pixel_in) 
+									: (Pixel_in - Primary_Block[index - M]));
+			end
+			/////////////////////////////////////////////////////////////////////////
 		end
 		
 		else if (curr_state == State3) begin		// Watermark_Block loading
@@ -129,54 +175,24 @@ always @(posedge clk or negedge rst) begin: parameter_calculator
 			
 			if (index + 1 < M * M) 
 				index <= index + 1;
-			else begin
+			else begin 								// At this stage everything is ready !
+				
+				Guk <= sigma_G / (M*M);							// 0 - 255
+				uk  <= (sigma_M*100) / (M*M*(White_Pixel+1));	// 0 - 100 (in reality 0 - 1 -> divide by 100)
+				sk 	<= (sigma_S*2*100) / (M*M*(White_Pixel+1));	// 0 - 100 (in reality 0 - 1 -> divide by 100)
+				
 				index <= 0;
 				curr_state <= State4;
 			end
 		end
 		
-		else if (curr_state == State4) begin	// Parameters calculation
-			
-			// Guk calculation
-			for (row = 0; row < M; row = row + 1) begin
-				for (col = 0; col < M; col = col + 1) begin
-				
-					sigma_M <= sigma_M + Primary_Block[col + row * M];
-					
-					sigma_S <= sigma_S + ((Primary_Block[col + row * M] - ((White_Pixel+1)/2) > 0) 
-								? (Primary_Block[col + row * M] - ((White_Pixel+1)/2)) 
-								: (((White_Pixel+1)/2) - Primary_Block[col + row * M]));
-							
-					if ((row == M-1) && (col == M-1)) 
-						sigma_G <= sigma_G + (2 * Primary_Block[col + row * M]);
-					else if (row == M-1)
-						sigma_G <= sigma_G + Primary_Block[col + row * M] + ((Primary_Block[col + row * M] - Primary_Block[(col+1) + row * M] > 0) 
-								? (Primary_Block[col + row * M] - Primary_Block[(col+1) + row * M]) 
-								: (Primary_Block[(col+1) + row * M] - Primary_Block[col + row * M]));
-					else if (col == M-1)
-						sigma_G <= sigma_G + Primary_Block[col + row * M] + ((Primary_Block[col + row * M] - Primary_Block[col + (row+1) * M] > 0) 
-								? (Primary_Block[col + row * M] - Primary_Block[col + (row+1) * M]) 
-								: (Primary_Block[col + (row+1) * M] - Primary_Block[col + row * M]));
-					else
-						sigma_G <= sigma_G + ((Primary_Block[col + row * M] - Primary_Block[col + (row+1) * M] > 0) 
-								? (Primary_Block[col + row * M] - Primary_Block[col + (row+1) * M]) 
-								: (Primary_Block[col + (row+1) * M] - Primary_Block[col + row * M])) +
-								((Primary_Block[col + row * M] - Primary_Block[(col+1) + row * M] > 0) 
-								? (Primary_Block[col + row * M] - Primary_Block[(col+1) + row * M]) 
-								: (Primary_Block[(col+1) + row * M] - Primary_Block[col + row * M]));
-				end
-			end
-			Guk <= sigma_G / (M*M);							// 0 - 255
-			uk  <= (sigma_M*100) / (M*M*(White_Pixel+1));	// 0 - 100 (in reality 0 - 1 -> divide by 100)
-			sk 	<= (sigma_S*2*100) / (M*M*(White_Pixel+1));	// 0 - 100 (in reality 0 - 1 -> divide by 100)
-			
-			// Final Equation
+		else if (curr_state == State4) begin	// ak, bk
 			if (Guk >= Bthr) begin
 				ak <= A_max;
 				bk <= B_min;
 			end
 			else begin // need to calculate ak and bk
-				if(sk) begin
+				if(sk != 0) begin
 					ak <= A_min + (((A_max - A_min) / (2**((uk - 50) * (uk - 50) / (100*100)))) / sk);
 					bk <= B_min + sk * ((B_max - B_min) * (100 - (100 / (2**((uk - 50) * (uk - 50) / (100*100))))));
 				end
@@ -185,18 +201,22 @@ always @(posedge clk or negedge rst) begin: parameter_calculator
 					bk <= B_min + ((B_max - B_min) * (100 - (100 / (2**((uk - 50) * (uk - 50) / (100*100))))));
 				end
 			end
-			index <= 'd0;
+			index = 0;
 			curr_state <= State5;
 		end	
+		
 		else if (curr_state == State5) begin	// Result calculator
-			if (index < M * M) begin
-				Pixel_Data <= ak * Primary_Block[index] + bk * Watermark_Block[index];
-				new_pixel <= ~new_pixel;	// Switch to trigger the test bench that new data arrived
+			
+			Pixel_Data <= (((ak * Primary_Block[index] + bk * Watermark_Block[index]) / 100) < 255)
+							? ((ak * Primary_Block[index] + bk * Watermark_Block[index]) / 100)
+							: 255;
+			new_pixel <= ~new_pixel;	// Switch to trigger the test bench that new data arrived
+			
+			if (index + 1 < M * M) begin	
 				index <= index + 1;
 			end
-			else begin	// All the result block has been sent
+			else begin		// All the result block has been sent
 				done <= 1'b1;
-				index <= 'd0;
 				curr_state <= State0;
 			end
 		end	

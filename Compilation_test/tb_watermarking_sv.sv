@@ -10,8 +10,9 @@ localparam Block_Depth = 7;			// Max pixel per row/colomn in block is 72 (7 bits
 localparam Max_Block_Size = 5184;	// Max pixels that a block can countain (720 / 10)^2 = 5184
 
 integer fd, index;
-integer i = 0, count = 0;
+integer i = 0;
 integer tmp1, tmp2;
+integer count=0, row=0, col=0;
 
 integer test;
 
@@ -28,6 +29,7 @@ reg [Data_Depth-1:0] Iwhite = 255;
 reg	[Data_Depth-1:0] PrimaryImg [400-1:0];
 reg	[Data_Depth-1:0] WatermarkImg [400-1:0];
 reg [Data_Depth-1:0] CorrectResults [400-1:0];
+reg [Data_Depth-1:0] Output [400-1:0];
 reg [Data_Depth-1:0] data;
 reg [Data_Depth-1:0] str;
 
@@ -44,13 +46,11 @@ reg  [Amba_Word-1:0] 			PWDATA;
 reg  [Amba_Addr_Depth:0] 		PADDR;
 
 wire  [Amba_Word-1:0] 			PRDATA;
-wire  [Data_Depth-1:0] 			Pixel_Data;
+wire  [Data_Depth-1:0] 			PixelData;
 wire					 		Image_Done;
 wire					 		new_pixel;
 
 initial begin
-
-	$display("start");
 
 	clk = 0;
 	PENABLE = 0;
@@ -80,6 +80,8 @@ initial begin
 		i = i +1;
 	end
 	
+	fd = $fopen("C:\\Users\\Ruben\\Documents\\Workspace\\HDS\\Visibal_Watermarking\\output.txt","w");
+	
 	i = 1;
 	rst = 1;
 	#4 rst = 0;
@@ -94,37 +96,35 @@ end
 always @(posedge clk) begin: load_pixel
 	
 	if (start == 1) begin
-		PWRITE = 'b0;
-		PSEL = 'b0;		// release the CPU
-		PENABLE = 'b0;
+		PWRITE <= 'b0;
+		PSEL <= 'b0;		// release the CPU
+		PENABLE <= 'b0;
 	end
 	
 	if (PENABLE) begin
-		if (i < 11 + (Np*Np + Nw*Nw)) begin 
+		if (i < 10 + (Np*Np + Nw*Nw)) begin 
 			if (i < 10) begin	//parameters
 				case(i)
-					1: PWDATA = Iwhite;
-					2: PWDATA = Np;
-					3: PWDATA = Nw;
-					4: PWDATA = M;
-					5: PWDATA = Bthr;
-					6: PWDATA = Amin;
-					7: PWDATA = Amax;
-					8: PWDATA = Bmin;
-					9: PWDATA = Bmax;
+					1: PWDATA <= Iwhite;
+					2: PWDATA <= Np;
+					3: PWDATA <= Nw;
+					4: PWDATA <= M;
+					5: PWDATA <= Bthr;
+					6: PWDATA <= Amin;
+					7: PWDATA <= Amax;
+					8: PWDATA <= Bmin;
+					9: PWDATA <= Bmax;
 				endcase	
 			end
-			else if (i < 11 + Np*Np) begin// primary_img
-				index = i - 10;
-				PWDATA = PrimaryImg[index][Data_Depth-1:0];
+			else if (i < 10 + Np*Np) begin // primary_img
+				
+				PWDATA <= PrimaryImg[i-10];
 			end
-			else begin	// Watermark_img
-				index = i - 10 - Np*Np;
-				PWDATA = WatermarkImg[index][Data_Depth-1:0];
-			end	
-			PADDR = i;
-			i = i + 1;
-			test = (10 + Np*Np);
+			else begin 	// Watermark_img
+				PWDATA <= WatermarkImg[i - 10 - Np*Np];
+			end
+			PADDR <= i;
+			i <= i + 1;
 		end
 		else begin
 			PWDATA = 1;
@@ -135,19 +135,17 @@ always @(posedge clk) begin: load_pixel
 end
 
 always @(new_pixel) begin
+	if(PixelData == {Data_Depth{1'bx}})
+		$display("ERROR");
 	
-	// if (CorrectResults[count] == Pixel_Data) 
-      // $write ("TestBench for image: true") ;
-    // else
-      // $write ("TestBench for image: false, ERROR = %d", CorrectResults[i] - Pixel_Data);
-    if (!Image_Done) begin
-		count = count + 1;
-	end
+	// $display("PixelData = %d, CorrectResults = %d", PixelData, );
+	// $fwrite(fd,"%d\n", PixelData);
+    // if (Image_Done)
+		// $display("FINISHED");
 	
 end
 
 always #2 clk = ~clk;
-// always #4 PENABLE = ~PENABLE;
 
 Visibal_Watermarking #(.Amba_Word(Amba_Word), .Amba_Addr_Depth(Amba_Addr_Depth), .Data_Depth(Data_Depth), 						.Block_Depth(Block_Depth), .Max_Block_Size(Max_Block_Size)) Visibal_Watermarking_1
 (
@@ -160,7 +158,7 @@ Visibal_Watermarking #(.Amba_Word(Amba_Word), .Amba_Addr_Depth(Amba_Addr_Depth),
         .PWDATA(PWDATA),
         .PRDATA(PRDATA),
 		.Image_Done(Image_Done), 	// State indicator
-		.Pixel_Data(Pixel_Data), 	// Modified pixel 
+		.Pixel_Data(PixelData), 	// Modified pixel 
 		.new_pixel(new_pixel)		// New Pixel Indicator 
 );
 

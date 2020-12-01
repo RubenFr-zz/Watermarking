@@ -1,24 +1,31 @@
 
 `timescale 1ns/1ns
 
-module tb_watermarking(/*AUTOARG*/);
+module tb_Visibal_Watermarking(/*AUTOARG*/);
+
+`define NULL 0
 
 localparam Amba_Word = 16;			// Size of every data reg
 localparam Amba_Addr_Depth = 20;	// Size of the data bank 
 localparam Data_Depth = 8;			// Bit depth of the pixel
 localparam Block_Depth = 7;			// Max pixel per row/colomn in block is 72 (7 bits)
 localparam Max_Block_Size = 5184;	// Max pixels that a block can countain (720 / 10)^2 = 5184
-localparam Max_Img_Size = 12;
+localparam Max_Img_Size = 720;
 
 integer fd, index;
-integer i = 0;
-integer tmp1, tmp2;
+integer i = 0, img = 1;
+integer tmp1, param;
 integer count=0, row=0, col=0, offset=0;
 
-integer test;
+string  str0 = "C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Matlab/primary_image_";
+string  str1 = "C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Matlab/watermark_image_";
+string  str2 = "C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Matlab/parameters_random_value_";
+string 	str3 = "C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Matlab/watermarked_image(result)_";
+string 	str4 = "C:/Users/Ruben/Documents/Workspace/HDS/Visibal_Watermarking/Matlab/output_";
+string 	val;
 
-reg [9-1:0] Np = Max_Img_Size;
-reg [9-1:0] Nw = Max_Img_Size;
+reg [10-1:0] Np = Max_Img_Size;
+reg [10-1:0] Nw = Max_Img_Size;
 reg [Data_Depth-1:0] M = 3;
 reg [Data_Depth-1:0] Bthr = 20;
 reg [Data_Depth-1:0] Amin = 83;
@@ -51,7 +58,7 @@ wire  [Data_Depth-1:0] 			PixelData;
 wire					 		Image_Done;
 wire					 		new_pixel;
 
-initial begin
+initial begin: init
 
 	clk = 0;
 	PENABLE = 0;
@@ -61,27 +68,89 @@ initial begin
 	PADDR = 0;
 	start = 0;
 	
-	fd = $fopen("C:\\Users\\Ruben\\Documents\\Workspace\\HDS\\Visibal_Watermarking\\Matlab\\primary_image_3.txt", "r");
+	val.itoa(img);
+	
+	// Read and Store the primary image
+	fd = $fopen($sformatf({str0, val, ".txt"}), "r");
+	
+	if (fd == `NULL) begin 	// checking if we managed to open it
+		$display("Couldn't open %s", str0);
+		$finish;
+    end
+	
+    if (!$feof(fd)) begin
+		tmp1 = $fscanf(fd, "%d\n", Np);
+    end
+	
 	while (!$feof(fd)) begin
 		tmp1 = $fscanf(fd, "%d\n", PrimaryImg[i]);
 		i = i +1;
 	end
+	$fclose(fd);
 	i = 0;
 	
-	fd = $fopen("C:\\Users\\Ruben\\Documents\\Workspace\\HDS\\Visibal_Watermarking\\Matlab\\watermark_image_3.txt", "r");
+	
+	// Read and Store the watermark image
+	fd = $fopen($sformatf({str1, val, ".txt"}), "r");
+	
+	if (fd == `NULL) begin
+		$display("Couldn't open %s", str1);
+		$finish;
+    end
+	
+    if (!$feof(fd)) begin
+		tmp1 = $fscanf(fd, "%d\n", Nw);
+    end
+	
 	while (!$feof(fd)) begin
 		tmp1 = $fscanf(fd, "%d\n", WatermarkImg[i]);
 		i = i +1;
 	end
+	$fclose(fd);
 	i = 0;
 	
-	fd = $fopen("C:\\Users\\Ruben\\Documents\\Workspace\\HDS\\Visibal_Watermarking\\Matlab\\watermarked_image(result)_3.txt","r");
+	
+	// Read the Parameters
+	fd = $fopen($sformatf({str2, val, ".txt"}), "r");
+	
+	if (fd == `NULL) begin 
+		$display("Couldn't open %s", str2);
+		$finish;
+    end
+	
+	while (!$feof(fd)) begin
+		tmp1 = $fscanf(fd, "%d", param);
+		case(i)
+			0: 	M = param;
+			1:	Bthr = param;
+			2:	Amin = param;
+			3:	Amax = param;
+			4: 	Bmin = param;
+			5: 	Bmax = param;
+		endcase
+		i = i +1;
+	end
+	$fclose(fd);
+	i = 0;
+	
+	
+	// Read and Store the GoldenRatio result
+	fd = $fopen($sformatf({str3, val, ".txt"}), "r");
+	
+	if (fd == `NULL) begin 
+		$display("Couldn't open %s", str2);
+		$finish;
+    end
+	
 	while (!$feof(fd)) begin
 		tmp1 = $fscanf(fd, "%d\n", CorrectResults[i]);
 		i = i +1;
 	end
+	$fclose(fd);
 	
-	fd = $fopen("C:\\Users\\Ruben\\Documents\\Workspace\\HDS\\Visibal_Watermarking\\output.txt","w");
+	//Open the file to write the output
+	fd = $fopen($sformatf({str4, val, ".txt"}), "w");
+	
 	
 	i = 1;
 	rst = 1;
@@ -96,22 +165,30 @@ end
 
 always @(posedge clk) begin: load_pixel
 	
-	if (start == 1) begin
-		if (Image_Done) begin
-			for (i = 0; i < Np*Np; i = i+1) begin
+	if (start == 1) 
+	begin
+		if (Image_Done) 
+		begin
+			for (i = 0; i < Np*Np; i = i+1) 
+			begin
 				$fwrite(fd,"%d\n", Output[i]);
 			end
-			$display("FINISHED");
+			$display("The image has been Watermarked!");
+			$fclose(fd);
 			$finish;
 		end
+		
 		PWRITE <= 'b0;
 		PSEL <= 'b0;		// release the CPU
 		PENABLE <= 'b0;
 	end
 	
-	if (PENABLE) begin
-		if (i < 10 + (Np*Np + Nw*Nw)) begin 
-			if (i < 10) begin	//parameters
+	if (PENABLE) 
+	begin
+		if (i < 10 + (Np*Np + Nw*Nw)) 
+		begin 
+			if (i < 10) 	//parameters
+			begin
 				case(i)
 					1: PWDATA <= Iwhite;
 					2: PWDATA <= Np;
@@ -124,17 +201,16 @@ always @(posedge clk) begin: load_pixel
 					9: PWDATA <= Bmax;
 				endcase	
 			end
-			else if (i < 10 + Np*Np) begin // primary_img
-				
+			else if (i < 10 + Np*Np)  	// primary_img
 				PWDATA <= PrimaryImg[i-10];
-			end
-			else begin 	// Watermark_img
+			else  						// Watermark_img
 				PWDATA <= WatermarkImg[i - 10 - Np*Np];
-			end
+			
 			PADDR <= i;
 			i <= i + 1;
 		end
-		else begin
+		else 
+		begin
 			PWDATA = 1;
 			PADDR = 0;
 			start = 1;
@@ -142,30 +218,33 @@ always @(posedge clk) begin: load_pixel
 	end
 end
 
-always @(negedge new_pixel) begin
-	if (!Image_Done) begin
+always @(negedge new_pixel) begin: PixelData_Reading
+	if (!Image_Done) 
+	begin
 		Output[offset + col + row * Np] <= PixelData;
 		
-		if (col + 1 == M) begin		// Next col isn't in the block
+		if (col + 1 == M) 			// Next col isn't in the block
+		begin
 			col <= 0;
-			if (row + 1 == M) begin		// Next row isn't in the block
+			if (row + 1 == M) 		// Next row isn't in the block
+			begin
 				row <= 0;
 				count <= count + 1;
 				offset <= offset + (((count + 1) % (Np/M) == 0) ? Np*(M-1)+M : M);	// First pixel of next primary block
 			end
-			else begin
+			else
 				row <= row + 1;
-			end
 		end
 		else 
 			col <= col + 1;
 			
-		$display("Output[%d] = %d", offset + col + row * Np, PixelData );
+		// $display("Output[%d] = %d", offset + col + row * Np, PixelData );
 	end
-
 end
 
-always #2 clk = ~clk;
+always #2 begin: clock
+	clk = ~clk;
+end
 
 Visibal_Watermarking #(.Amba_Word(Amba_Word), .Amba_Addr_Depth(Amba_Addr_Depth), .Data_Depth(Data_Depth), 						.Block_Depth(Block_Depth), .Max_Block_Size(Max_Block_Size)) Visibal_Watermarking_1
 (

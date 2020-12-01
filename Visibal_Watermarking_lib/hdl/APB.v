@@ -1,13 +1,18 @@
 //
 // APB.v
 //
-// Ruben Fratty		340895499
-// Emmanuel
+//	Ruben Fratty		340895499
+//	Emmanuel Kofman		315219865
 //
 
 `resetall
 `timescale 1ns/10ps
-module APB(
+module APB #
+(
+	parameter Amba_Word = 16,               // Size of every data reg
+	parameter Amba_Addr_Depth = 20         	// Size of the data bank 
+)
+(
 	clk, 
 	rst, 
 	write_en,
@@ -17,9 +22,7 @@ module APB(
 	start
 );
 
-//PARAMETERS  
-parameter Amba_Word = 16;               // Size of every data reg
-parameter Amba_Addr_Depth = 20;         // Size of the data bank 
+//LOCAL PARAMETERS  
 localparam Max_Size_DATA = 2*720*720+10;
 
 // DEFINE INPUTS/OUTPUTS VARS
